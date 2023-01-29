@@ -1,6 +1,6 @@
 import { IsNotEmpty, Length } from 'class-validator';
 
-export class CreatePlayer {
+export class CreatePlayerDTO {
   @IsNotEmpty({
     message: 'Username is required',
   })
