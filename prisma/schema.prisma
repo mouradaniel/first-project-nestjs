@@ -3,12 +3,13 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Players {
-  id        String @id
+  id        String   @id
   username  String
   email     String
+  createdAt DateTime @default(now())
 }
