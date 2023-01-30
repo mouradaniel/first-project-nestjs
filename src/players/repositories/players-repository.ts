@@ -8,7 +8,7 @@ export abstract class PlayersRepository {
     password: string,
   ): Promise<void>;
   abstract findAll(): Promise<Players[]>;
-  abstract findOne(id: string): Promise<Players>;
+  abstract findOne(username: string): Promise<Players>;
   abstract update(
     id: string,
     updatePlayerDto: UpdatePlayerDto,

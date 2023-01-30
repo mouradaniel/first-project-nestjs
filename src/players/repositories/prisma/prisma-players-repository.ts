@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { PrismaService } from 'src/database/prisma.service';
@@ -13,12 +14,14 @@ export class PrismaPlayersRepository implements PlayersRepository {
     email: string,
     password: string,
   ): Promise<void> {
+    const hash = await bcrypt.hash(password, 10);
+
     await this.prisma.players.create({
       data: {
         id: randomUUID(),
         username,
         email,
-        password,
+        password: hash,
       },
     });
   }
@@ -27,8 +30,10 @@ export class PrismaPlayersRepository implements PlayersRepository {
     return await this.prisma.players.findMany();
   }
 
-  async findOne(id: string) {
-    return await this.prisma.players.findUnique({ where: { id } });
+  async findOne(username: string) {
+    return await this.prisma.players.findFirst({
+      where: { username },
+    });
   }
 
   async update(id: string, updatePlayerDto: UpdatePlayerDto) {
