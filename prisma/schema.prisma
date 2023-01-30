@@ -11,5 +11,6 @@ model Players {
   id        String   @id
   username  String
   email     String
+  password  String
   createdAt DateTime @default(now())
 }
