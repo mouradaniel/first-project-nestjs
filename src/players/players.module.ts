@@ -13,5 +13,6 @@ import { PrismaPlayersRepository } from './repositories/prisma/prisma-players-re
       useClass: PrismaPlayersRepository,
     },
   ],
+  exports: [PlayersRepository],
 })
 export class PlayersModule {}
