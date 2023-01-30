@@ -1,8 +1,12 @@
 import { Players } from '@prisma/client';
-import { UpdatePlayerDto } from 'src/dtos/update-player';
+import { UpdatePlayerDto } from 'src/players/dtos/update-player';
 
 export abstract class PlayersRepository {
-  abstract create(username: string, email: string): Promise<void>;
+  abstract create(
+    username: string,
+    email: string,
+    password: string,
+  ): Promise<void>;
   abstract findAll(): Promise<Players[]>;
   abstract findOne(id: string): Promise<Players>;
   abstract update(

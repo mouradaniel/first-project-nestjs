@@ -1,4 +1,4 @@
-import { IsNotEmpty, Length } from 'class-validator';
+import { IsNotEmpty, IsStrongPassword, Length } from 'class-validator';
 
 export class CreatePlayerDTO {
   @IsNotEmpty({
@@ -11,4 +11,10 @@ export class CreatePlayerDTO {
     message: 'Email is required',
   })
   email: string;
+
+  @IsNotEmpty({
+    message: 'Password is required',
+  })
+  @IsStrongPassword()
+  password: string;
 }

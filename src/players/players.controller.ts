@@ -12,14 +12,14 @@ import { UpdatePlayerDto } from './dtos/update-player';
 import { PlayersRepository } from './repositories/players-repository';
 
 @Controller('players')
-export class AppController {
+export class PlayersController {
   constructor(private playersRepository: PlayersRepository) {}
 
   @Post()
   async create(@Body() body: CreatePlayerDTO) {
-    const { username, email } = body;
+    const { username, email, password } = body;
 
-    await this.playersRepository.create(username, email);
+    await this.playersRepository.create(username, email, password);
   }
 
   @Get()
